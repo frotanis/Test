@@ -26,7 +26,7 @@ def index(request, category_id=None):
     return render(request, 'index.html', {
         'products': products,
         'categories': categories,
-        'cart_items_count': cart_items_count  # 👈 Передаємо в шаблон
+        'cart_items_count': cart_items_count  #Передаємо в шаблон
     })
 
 
@@ -38,7 +38,7 @@ def add_to_cart(request, product_id):
     cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)
 
     if not created:
-        # Якщо товар уже був в кошику - просто збільшуємо кількість на 1
+        # Якщо товар уже був в кошику то просто збільшуємо кількість на 1
         cart_item.quantity += 1
         cart_item.save()
 

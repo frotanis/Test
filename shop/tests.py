@@ -4,7 +4,7 @@ from .models import Category, Product
 class ShopTestCase(TestCase):
     def setUp(self):
         # Цей метод запускається ПЕРЕД кожним тестом.
-        # Тут ми створюємо "віртуальну" базу даних спеціально для тестів
+        # Тут створюємо "віртуальну" базу даних спеціально для тестів
         self.category = Category.objects.create(name="Тестова категорія")
         self.product = Product.objects.create(
             category=self.category,
@@ -21,7 +21,7 @@ class ShopTestCase(TestCase):
         self.assertTrue(self.product.is_available)
 
     def test_homepage_status_code(self):
-        # Перевіряємо, чи головна сторінка віддає статус 200 (ОК), а не помилку 404 чи 500
+        # Перевіряємо, чи головна сторінка віддає статус 200 (ОК), а не помилку
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         # Перевіряємо, чи є на головній сторінці наш тестовий товар
