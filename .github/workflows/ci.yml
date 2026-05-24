@@ -1,0 +1,29 @@
+name: CI/CD Pipeline
+
+# Пайплайн запускатиметься при кожному пуші або пул-реквесті в гілку main
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Копіюємо код проєкту на сервери GitHub
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. Налаштовуємо Docker всередині віртуальної машини GitHub
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    # 3. Збираємо наш Docker-контейнер
+    - name: Build Docker images
+      run: docker compose build
+
+    # 4. Запускаємо тести в контейнері
+    - name: Run tests inside Docker container
+      run: docker compose run --rm web python manage.py test

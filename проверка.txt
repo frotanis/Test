@@ -1,0 +1,30 @@
+# 1. Будуємо "ізольовану кімнату"
+py -m venv venv
+
+# 2. Заходимо в неї (обов'язково!)
+.\venv\Scripts\activate
+
+# 3. Завозимо інструменти для роботи
+pip install django
+python -m pip install Pillow
+
+# 4. Будуємо фундамент сайту (Зверни увагу на крапку в кінці! 
+# Вона каже Пітону "створи файли прямо тут", щоб не було зайвих вкладених папок)
+django-admin startproject core .
+
+# 5. Створюємо додаток самого магазину (з'явиться папка shop)
+python manage.py startapp shop
+
+
+Super_user(admin)
+name: guan
+email: blank
+password: 66HJEEP1844
+
+Test user
+name: parcey_varcey
+password YGTukkpfd132912
+
+
+ python manage.py runserver
+ http://127.0.0.1:8000/
